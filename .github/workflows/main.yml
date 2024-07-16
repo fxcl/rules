@@ -2,6 +2,9 @@ name: Clone and Commit
 
 on: [push]
 
+permissions:
+  contents: write  # 确保对仓库内容有写权限
+  
 jobs:
   clone-and-commit:
     runs-on: ubuntu-latest
