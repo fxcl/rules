@@ -34,7 +34,7 @@ jobs:
     - name: Commit and push changes
       run: |
         git add .
-        git commit -m "Add files from public repository"
+        git commit -m "update files"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
