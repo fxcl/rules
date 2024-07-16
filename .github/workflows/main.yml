@@ -14,9 +14,9 @@ jobs:
       uses: GuillaumeFalourd/clone-github-repo-action@v2.1
       with:
         depth: 1
-        branch: 'X'
-        owner: 'Repcz'
-        repository: 'Tool'
+        branch: 'X'  # 替换为实际分支名
+        owner: 'Repcz'  # 替换为实际拥有者
+        repository: 'Tool'  # 替换为实际仓库名
 
     - name: Remove .git folder from cloned repository
       run: rm -rf Tool/.git
@@ -32,6 +32,8 @@ jobs:
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
     - name: Commit and push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # 使用环境变量来提供 PAT
       run: |
         git add .
         git commit -m "Add files from public repository"
