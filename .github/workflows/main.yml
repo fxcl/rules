@@ -18,6 +18,9 @@ jobs:
         owner: 'Repcz'
         repository: 'Tool'
 
+    - name: Remove .git folder from cloned repository
+      run: rm -rf Tool/.git
+
     - name: Copy files
       run: |
         cp -r Tool/* .
@@ -25,8 +28,8 @@ jobs:
 
     - name: Configure git
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git config --global user.name 'fxcl'
+        git config --global user.email 'me@gnux.cn'
 
     - name: Commit and push changes
       run: |
