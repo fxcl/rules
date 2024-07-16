@@ -1,7 +1,34 @@
-- name: Clone GuillaumeFalourd/poc-github-actions PUBLIC repository
-  uses: GuillaumeFalourd/clone-github-repo-action@v2.1
-  with:
-    depth: 1
-    branch: 'main'
-    owner: 'Repcz'
-    repository: 'Tool'
+on:
+  workflow_call:
+    inputs:
+      run-name:
+        required: false
+        description: 'Analyze Image and Create Container'
+        default: 'Running Build And Analyze Docker Image'
+        type: string        
+name: cloningRepository
+run-name: ${{inputs.run-name}}
+jobs:
+  Clon:
+    runs-on: self-hosted
+    steps:
+      - name: Clonar Repositorio
+        uses: GuillaumeFalourd/clone-github-repo-action@v2.1
+        with:
+          depth: 1
+          branch: 'feature'
+          owner: 'Repcz'
+          repository: 'Tool'
+      - name: Access to repository content
+        run: |
+          #Lines are left to upload cloned content to the repository
+          #but since they will require a username and password, they are left commented
+          #however, based on what is stated in classes it is understood that the command - uses: actions/checkout@v4 also performs a clone that is usable.
+          #cd rules
+          #git init
+          #git add .
+          #git commit -m "Add existing project files to Git"
+          #git remote add origin
+          #git push -u -f origin main
+          #cd ..
+          #rm -rf rules
