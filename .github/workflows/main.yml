@@ -34,7 +34,5 @@ jobs:
     - name: Commit and push changes
       run: |
         git add .
-        git commit -m "update files"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        git commit -m "Add files from public repository"
+        git push https://fxcl:${{ secrets.PAT_TOKEN }}@github.com/<owner>/<repository>.git HEAD:main
