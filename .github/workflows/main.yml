@@ -3,10 +3,10 @@ on:
     inputs:
       run-name:
         required: false
-        description: 'Analyze Image and Create Container'
-        default: 'Running Build And Analyze Docker Image'
+        description: 'Analisa Imagen y Crea Contenedor'
+        default: 'Running Build And Analize Docker Image'
         type: string        
-name: cloningRepository
+name: clonacionRepositorio
 run-name: ${{inputs.run-name}}
 jobs:
   Clon:
@@ -16,19 +16,19 @@ jobs:
         uses: GuillaumeFalourd/clone-github-repo-action@v2.1
         with:
           depth: 1
-          branch: 'feature'
+          branch: 'X'
           owner: 'Repcz'
-          repository: 'Tool'
-      - name: Access to repository content
+          repository: 'tool'
+      - name: Acceso al conteniso del repositorio
         run: |
-          #Lines are left to upload cloned content to the repository
-          #but since they will require a username and password, they are left commented
-          #however, based on what is stated in classes it is understood that the command - uses: actions/checkout@v4 also performs a clone that is usable.
-          #cd rules
+          #Se dejan lineas para subir contenido clonado a repositorio
+          #pero dado que requeriran de usuario y password se dejan comentadas
+          #sin embargo, en base a lo expuesto en clases se entiende que el comando - uses: actions/checkout@v4 tambien realiza un clonado que es utilizable. 
+          #cd final-lab
           #git init
           #git add .
           #git commit -m "Add existing project files to Git"
           #git remote add origin
           #git push -u -f origin main
           #cd ..
-          #rm -rf rules
+          #rm -rf final-lab
