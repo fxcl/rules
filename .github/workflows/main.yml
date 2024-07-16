@@ -1,34 +1,35 @@
-on:
-  workflow_call:
-    inputs:
-      run-name:
-        required: false
-        description: 'Analisa Imagen y Crea Contenedor'
-        default: 'Running Build And Analize Docker Image'
-        type: string        
-name: clonacionRepositorio
-run-name: ${{inputs.run-name}}
+name: Clone and Commit
+
+on: [push]
+
 jobs:
-  Clon:
-    runs-on: self-hosted
+  clone-and-commit:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Clonar Repositorio
-        uses: GuillaumeFalourd/clone-github-repo-action@v2.1
-        with:
+    - name: Checkout this repository
+      uses: actions/checkout@v2
+    - name: Clonar Repositorio
+      uses: GuillaumeFalourd/clone-github-repo-action@v2.1
+      with:
           depth: 1
           branch: 'X'
           owner: 'Repcz'
           repository: 'tool'
-      - name: Acceso al conteniso del repositorio
-        run: |
-          #Se dejan lineas para subir contenido clonado a repositorio
-          #pero dado que requeriran de usuario y password se dejan comentadas
-          #sin embargo, en base a lo expuesto en clases se entiende que el comando - uses: actions/checkout@v4 tambien realiza un clonado que es utilizable. 
-          #cd final-lab
-          #git init
-          #git add .
-          #git commit -m "Add existing project files to Git"
-          #git remote add origin
-          #git push -u -f origin main
-          #cd ..
-          #rm -rf final-lab
+    - name: Copy files
+      run: |
+        cp -r tool/* .
+        cp -r tool/.[!.]* .
+
+    - name: Configure git
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+    - name: Commit and push changes
+      run: |
+        git add .
+        git commit -m "Add files from public repository"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
