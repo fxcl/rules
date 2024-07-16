@@ -6,7 +6,7 @@ on:
         description: 'Analisa Imagen y Crea Contenedor'
         default: 'Running Build And Analize Docker Image'
         type: string        
-name: clonacionRepositorio
+name: clone repo
 run-name: ${{inputs.run-name}}
 jobs:
   Clon:
