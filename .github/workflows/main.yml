@@ -4,6 +4,7 @@ on: [push]
 
 permissions:
   contents: write  # 确保对仓库内容有写权限
+  workflows: write
   
 jobs:
   clone-and-commit:
