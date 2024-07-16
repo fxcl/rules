@@ -9,17 +9,19 @@ jobs:
     steps:
     - name: Checkout this repository
       uses: actions/checkout@v2
-    - name: Clonar Repositorio
+      
+    - name: Clone Public Repository
       uses: GuillaumeFalourd/clone-github-repo-action@v2.1
       with:
-          depth: 1
-          branch: 'X'
-          owner: 'Repcz'
-          repository: 'tool'
+        depth: 1
+        branch: 'X'
+        owner: 'Repcz'
+        repository: 'Tool'
+
     - name: Copy files
       run: |
-        cp -r tool/* .
-        cp -r tool/.[!.]* .
+        cp -r Tool/* .
+        cp -r Tool/.[!.]* .
 
     - name: Configure git
       run: |
