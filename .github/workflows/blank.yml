@@ -1,0 +1,16 @@
+name: Clone Workflow
+
+on:
+  workflow_dispatch
+
+jobs:
+  build_ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone Repo Scripts
+        uses: MoeKernel/github-repo-action@v3.1
+        with:
+          owner: 'Repcz'
+          branch: 'X'
+          repository: 'Tool'
